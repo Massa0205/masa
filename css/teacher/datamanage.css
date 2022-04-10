@@ -1,0 +1,280 @@
+html{
+    height:100%;
+}
+body{
+    height:100%;
+    font-family:"avenir next";
+    background: linear-gradient(117deg, rgba(0,96,180,1) 0%, rgba(0,177,255,1) 69%);
+    background-attachment: fixed;
+}
+/**モーダルcss**/
+.modal-wrapper{
+    display:none;
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    z-index: 100;
+    background-color:rgba(0,0,0,0.356);
+}
+.modal-contents{
+    background: whitesmoke;
+    border-radius: 10px;
+    width:800px;
+    height:900px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:30px;
+}
+.header-contents{
+    height:80px;
+    width:1200px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.header-logo{
+    display:inline-block;
+    padding-top:30px;
+    margin-top:5px;
+    margin-left:3%;
+
+}
+.header-logo a{/*ロゴ*/
+    color:white;
+    font-size:28px;
+}
+.header-search{
+    display:inline-block;
+    background-color:antiquewhite;
+    height:50px;
+}
+.header-search input{
+    display:inline-block;
+    outline:none;
+    border:none;
+    background-color:rgba(0,0,0,0.15);
+    color:white;
+    font-size:16px;
+    padding:10px 16px 10px 10px;
+    border-radius:5px;
+    margin-top:22px;
+    width:400px;
+    position:absolute;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.frm input::placeholder{
+    color:rgb(219, 219, 219);
+}
+.mysearch{
+    font-size:1.5em;
+    color:#ffffffda;
+}
+.btn{
+    top:-13px;
+    left:830px;
+    color:white;
+    background-color:rgba(0,0,0,0);
+    outline:none;
+    border:none;
+    display:inline-block;
+    position:absolute;
+    margin-left:160px;
+    margin-top:50px;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.header-list{
+    display:inline-block;
+    float:right;
+    padding-top:36px;
+    font-size:16px;
+}
+.header-ul li{
+    float:left;
+    margin-right:19px;
+    
+}
+.topleftbar a{
+    color:white;
+}
+/********ヘッダー終了********/
+.menu{
+    width:800px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:50px;
+
+}
+.menu li{
+    color:white;
+    padding-top:10px;
+    padding-bottom: 10px;
+    display:inline-block;
+    width:180px;
+    margin-left:60px;
+    text-align:center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.menu a{
+    color:white;
+}
+
+.parent-contents{
+    width:1300px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.contents{
+    overflow-y: scroll;
+    box-shadow: 3px 3px 15px black;
+    margin-top:60px;
+    border-radius: 8px;
+    background-color:rgba(250, 250, 250);
+    width:600px;
+    height:700px;
+    margin-right:auto;
+    margin-left:auto;
+}
+th,td {
+    border: solid 1px #82a5b6;            /* 枠線指定 */
+    padding:8px 14px;
+}
+.name{
+    cursor:pointer;
+
+}
+.name:hover{
+    background-color:rgba(0, 162, 255,0.1);
+}
+#col{
+    background-color: rgba(0, 162, 255,0.1);
+}
+
+.dummy{
+    height:60px;
+}
+table {
+    margin-bottom:50px;
+    letter-spacing: 2px;
+    margin-left:auto;
+    margin-right:auto;
+    color:rgb(94, 94, 94);
+    background-color: rgba(255, 255, 255, 1);
+    border-collapse:  collapse;     /* セルの線を重ねる */
+}
+.stu{
+    cursor:pointer;
+}
+.chart-area{/*円グラフがスマホでつぶれないようにする*/
+	position: relative;
+	width:100%;
+	height:50vh;
+}
+/***左のでーた***/
+.modal-student-name{
+    margin-top:15px;
+    margin-left:10px;
+    font-size:24px;
+    font-weight: 800;
+}
+.label-first-date{
+    font-size:14px;
+    margin-top:30px;
+}
+/***右のデータ***/
+.right-contents{
+    box-shadow: 3px 3px 15px black;
+    float:right;
+    border-radius:10px;
+    margin-top:100px;
+    margin-left:60px;
+    display:inline-block;
+    width:600px;
+    height:500px;
+    background-color:white;
+    vertical-align: top;
+}
+.block1,.block2{
+    background-color:whitesmoke;    
+    display:block;
+}
+
+.student-info{
+    margin-top:40px;
+    margin-left:60px;
+    width:240px;
+    height:270px;
+    display:inline-block;
+}
+.student-graph{
+    margin-top:20px;
+    margin-right:0;
+    float:right;
+    height:300px;
+    width:500px;
+    display:inline-block;
+}
+.right-box-reports{
+    background-color:blue;
+}
+/**報告書***/
+.student-reports{
+    overflow-y:auto;
+    width:600px;
+    margin-right:auto;
+    margin-left:auto;
+    height:530px;
+}
+.modal-reports{
+    color:#777777;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 4px 4px 4px;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding: 10px 20px;
+}
+.modal-reports-top{
+    margin-top:15px;
+    width:550px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.kigyomei,.syurui{
+    display:inline-block;
+}
+.syurui,.hizuke,.naiyo{
+    font-size:14px;
+}
+.hizuke{
+    margin-top:10px;
+    margin-bottom:15px;
+}
+.syurui{
+    margin-left:5px;
+}
+.kigyomei{
+    color:#5c5c5c;
+    font-weight: 700;
+}
+.naiyo{
+    width:550px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-bottom:15px;
+}
+#closebtn{
+    top:60px;
+    left:100px;
+    float: right;
+    margin-right: 30px;
+    font-size: 30px;
+}
+
+
+

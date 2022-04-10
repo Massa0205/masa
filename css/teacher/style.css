@@ -1,0 +1,171 @@
+html{
+    height:100%;
+}
+body{
+    height:100%;
+    font-family:"avenir next";
+    background: linear-gradient(117deg, rgba(0,96,180,1) 0%, rgba(0,177,255,1) 69%);
+    background-attachment: fixed;
+}
+.header-contents{
+    height:80px;
+    width:1200px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.header-logo{
+    display:inline-block;
+    padding-top:30px;
+    margin-top:5px;
+    margin-left:3%;
+
+}
+.header-logo a{/*ロゴ*/
+    color:white;
+    font-size:28px;
+}
+.header-search{
+    display:inline-block;
+    background-color:antiquewhite;
+    height:50px;
+}
+.header-search input{
+    display:inline-block;
+    outline:none;
+    border:none;
+    background-color:rgba(0,0,0,0.15);
+    color:white;
+    font-size:16px;
+    padding:10px 16px 10px 10px;
+    border-radius:5px;
+    margin-top:22px;
+    width:400px;
+    position:absolute;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.frm input::placeholder{
+    color:rgb(219, 219, 219);
+}
+.mysearch{
+    font-size:1.5em;
+    color:#ffffffda;
+}
+.btn{
+    top:-13px;
+    left:830px;
+    color:white;
+    background-color:rgba(0,0,0,0);
+    outline:none;
+    border:none;
+    display:inline-block;
+    position:absolute;
+    margin-left:160px;
+    margin-top:50px;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.header-list{
+    display:inline-block;
+    float:right;
+    padding-top:36px;
+    font-size:16px;
+}
+.header-ul li{
+    float:left;
+    margin-right:19px;
+    
+}
+.topleftbar a{
+    color:white;
+}
+/********ヘッダー終了********/
+.menu{
+    width:800px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:50px;
+
+}
+.menu li{
+    color:white;
+    padding-top:10px;
+    padding-bottom: 10px;
+    display:inline-block;
+    width:180px;
+    text-align:center;
+    border-radius:5px;
+    margin-left:50px;
+}
+.mode-items{
+    width:500px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.menu a{
+    color:white;
+}
+.box{
+    color:white;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    border:solid 1px #87B5E6;
+    border-radius: 6px;
+    width:800px;
+    background-color:rgba(0,0,0,0.15);
+}
+.contents{
+    margin-top:40px;
+}
+.report{
+    margin-top:20px;
+    margin-bottom:20px;
+
+}
+.report ul{
+    margin-left:20px;
+    margin-right:20px;
+}
+.report li{
+    margin-top:9px;
+}
+.report span{
+    font-size:15px;
+    color:rgb(197, 196, 196);
+}
+#selected{
+    background-color:rgba(0, 0, 0, 0.111);
+}
+
+#admit{
+    font-weight: 700;
+    border: none;
+    background-color: #48ff00;
+    border-radius: 3px;
+    color: rgb(88 88 88);
+    height:32px;
+    width:60px;
+
+}
+#deny{
+    font-weight: 700;
+    border: none;
+    border-radius: 3px;
+    color: rgb(88 88 88);
+    height:32px;
+    width:60px; 
+    margin-left:5px;
+}
+.subbtn{
+    width:140px;
+    margin-right:auto;
+    margin-left:auto;
+}
+footer{
+    height:100px;
+    margin-bottom:100px;
+}
