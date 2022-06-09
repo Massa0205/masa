@@ -1,12 +1,17 @@
 <?php 
 
-   // session_cache_limiter('private_no_expire');
     session_start();
-    //ログインできていない場合はログイン画面に戻る
+    /*
+        ログインチェック
+    */
     if(!isset($_SESSION["login"])){
         header("Location: login/");
     }
-    /*******関数読み込み　要編集**** */
+    /*
+        DB接続メソッド
+        Ajaxメソッド
+        読み込み
+    */
     require_once("functions/common/connectdb.php");
     require_once("functions/common/function.php");
 
@@ -17,26 +22,57 @@
     if(!isset($pdo)){
         header("Location: /error/");
     }
-    //全学科最近のレポートSQL発行
-    $sqlresult_alldep = $pdo->query('SELECT REP.company_code AS REPORT_COMPANY_ID,REP.poster AS REPORT_POSTER,REP.report_date AS REPORT_DATE,REP.impression AS REPORT_IMPRESSION,COM.company_name AS REPORT_COMPANY_NAME,STU.name AS REPORT_STUDENT_NAME,STU.department AS REPORT_STUDENT_DEPARTMENT,TYP.name AS REPORT_TYPE 
-                                        FROM reports REP JOIN companies COM ON REP.company_code = COM.company_code
-                                        JOIN students STU ON REP.poster = STU.student_number
-                                        JOIN report_type TYP ON REP.type = TYP.id 
-                                        ORDER BY REP.report_date DESC;');
+    /*
+        全学科の直近の報告書取得
+    */
+    $allDepartmentReports = $pdo->query('SELECT REP.company_code AS REPORT_COMPANY_ID
+                                                ,REP.poster AS REPORT_POSTER
+                                                ,REP.reportDate AS reportDate
+                                                ,REP.impression AS REPORT_IMPRESSION
+                                                ,COM.company_name AS REPORT_COMPANY_NAME
+                                                ,STU.name AS REPORT_STUDENT_NAME
+                                                ,STU.department AS REPORT_STUDENT_DEPARTMENT
+                                                ,TYP.name AS REPORT_TYPE 
+                                            FROM reports REP 
+                                                JOIN companies COM 
+                                                    ON REP.company_code = COM.company_code
+                                                JOIN students STU 
+                                                    ON REP.poster = STU.student_number
+                                                JOIN report_type TYP ON REP.type = TYP.id 
+                                            ORDER BY REP.reportDate DESC;');
 
-    //ユーザーの学科最近のレポートSQL発行
-    $sqlresult_userdep=$pdo->prepare('SELECT REP.company_code AS REPORT_COMPANY_ID,REP.poster AS REPORT_POSTER,REP.report_date AS REPORT_DATE,REP.impression AS REPORT_IMPRESSION,COM.company_name AS REPORT_COMPANY_NAME,STU.name AS REPORT_STUDENT_NAME,STU.department AS REPORT_STUDENT_DEPARTMENT,TYP.name AS REPORT_TYPE
-                                        FROM reports REP JOIN companies COM ON REP.company_code = COM.company_code 
-                                        JOIN students STU ON REP.poster = STU.student_number
-                                        AND STU.department = ?
-                                        JOIN report_type TYP ON REP.type = TYP.id 
-                                        ORDER BY REP.report_date DESC');
+    /*
+        ログインユーザーの所属学科の直近の報告書取得
+    */
+    $belongDepartmentReports = $pdo->prepare('SELECT REP.company_code AS REPORT_COMPANY_ID
+                                                    ,REP.poster AS REPORT_POSTER
+                                                    ,REP.reportDate AS reportDate
+                                                    ,REP.impression AS REPORT_IMPRESSION
+                                                    ,COM.company_name AS REPORT_COMPANY_NAME
+                                                    ,STU.name AS REPORT_STUDENT_NAME
+                                                    ,STU.department AS REPORT_STUDENT_DEPARTMENT
+                                                    ,TYP.name AS REPORT_TYPE
+                                                FROM reports REP 
+                                                    JOIN companies COM 
+                                                        ON REP.company_code = COM.company_code 
+                                                    JOIN students STU 
+                                                        ON REP.poster = STU.student_number
+                                                            AND STU.department = ?
+                                                    JOIN report_type TYP   
+                                                        ON REP.type = TYP.id 
+                                                ORDER BY REP.reportDate DESC');
     $sqlresult_userdep->execute(array($_SESSION["UserDepartment"]));
 
-    //ログインしているユーザーの権限によって表示数を変える
-    $output_limit = 15;
+    /*
+        ログインしているユーザーの権限によって表示制限数切り替え
+        デフォルト:15件
+        生徒:5件
+    */  
+    $reportListMaxNum = 15;
+    studentFlg = false;
     if(security::isStudent($_SESSION["auth"])){
-        $output_limit = 5;  
+        $reportListMaxNum = 5;
+        studentFlg = true;
     }
 
 ?>
@@ -102,73 +138,83 @@
         <main>
             <!--全学生の最近のレポート---->
             <h1 class = "recentlyreport">電ビ生の最近のレポート</h1>
-                <?php //sqlで取得した全学生の最近のレポートを一件ずつ表示
-                for($i = 0;$i<$output_limit && $report_fromEveryone = $sqlresult_alldep->fetch(PDO::FETCH_ASSOC);$i++):
-                    $work_date=new Datetime($report_fromEveryone['REPORT_DATE']);
-                    $report_date=date_format($work_date,'Y年m月d日');
-                    $report_company_name = $report_fromEveryone['REPORT_COMPANY_NAME'];
-                    $report_type = $report_fromEveryone['REPORT_TYPE'];
-                    $report_poster_dep = $report_fromEveryone['REPORT_STUDENT_DEPARTMENT'];
-                    $report_poster_name = $report_fromEveryone['REPORT_STUDENT_NAME'];
-                    $report_impression = $report_fromEveryone['REPORT_IMPRESSION'];
+                <?php 
+                while($allDepartmentReportsRow = $allDepartmentReports->fetch(PDO::FETCH_ASSOC)): //行取り出しループ
+                    for($counter = 0;counter < $reportListMaxNum;$counter += 1): //表示件数制限
+                        $work_date=new Datetime($allDepartmentReportsRow['reportDate']);
+                        $reportDate=date_format($work_date,'Y年m月d日');
+                        $reportCompanyName = $allDepartmentReportsRow['REPORT_COMPANY_NAME'];
+                        $reportType = $allDepartmentReportsRow['REPORT_TYPE'];
+                        $reportDepartment = $allDepartmentReportsRow['REPORT_STUDENT_DEPARTMENT'];
+                        $reportPoster = $allDepartmentReportsRow['REPORT_STUDENT_NAME'];
+                        $reportImpression = $allDepartmentReportsRow['REPORT_IMPRESSION'];
                 ?>
                 <div class = "newreports">
                     <ul class="a1">
                         <!--企業-->
-                        <li class="w1"><a class="companyname" id = "<?php echo $report_company_name ?>"><?php echo $report_company_name ?></a></li>
+                        <li class="w1"><a class="companyname" id = "<?php echo $reportCompanyName ?>"><?php echo $reportCompanyName ?></a></li>
                         <!--種類-->
-                        <li class="w2"><p class="reptype"><?php echo $report_type ?></p></li>  
+                        <li class="w2"><p class="reptype"><?php echo $reportType ?></p></li>  
                     </ul>
                     <ul class="a2">
                         <li class="w2" id="str">投稿者:</li>
                         <!--学科-->
-                        <li class="w2"><p class="department"><?php echo $report_poster_dep ?></p></li>
+                        <li class="w2"><p class="department"><?php echo $reportDepartment ?></p></li>
                         <!--氏名-->
-                        <li class="w2"><p class="studentname"><?php echo $report_poster_name ?></p></li>
+                        <li class="w2"><p class="studentname"><?php echo $reportPoster ?></p></li>
                         <div class ="reportdate">
                             <!--日付-->
-                            <li class="w2"><p class="reportdate"><?php echo $report_date ?></p></li>
+                            <li class="w2"><p class="reportdate"><?php echo $reportDate ?></p></li>
                         </div>
                     </ul>            
-                <!--内容----><p class="report_impression"><?php echo $report_impression ?></p>
+                <!--内容----><p class="report_impression"><?php echo $reportImpression ?></p>
                 </div>
-            <?php endfor; //全学生の最近のレポート表示終了?>
+                <?php
+                    endfor;
+                endwhile;
+                ?>
 
             <div class="kuuhaku"></div>
 
             <!--ユーザーの学科の最近のレポート-->
-            <?php 
-            if(security::isStudent($_SESSION["auth"])):?>
+            <?php
+            /*
+                所属学科の直近の報告書は、ログインユーザーが生徒の場合のみ表示
+            */
+            if(studentFlg):
+            ?>
             <h2 class = "recentlyreport">あなたの学科の最近のレポート</h2>
             <?php  //SQLで取得したユーザーの学科のレポートを一件ずつ表示
-                for($i = 0; $i < 5 && $report_fromClassmate = $sqlresult_userdep->fetch(PDO::FETCH_ASSOC);$i++):
-                    $date2=new Datetime($report_fromClassmate['REPORT_DATE']);
-                    $report_date=date_format($date2,'Y年m月d日');
-                    $report_company_name = $report_fromEveryone['REPORT_COMPANY_NAME'];
-                    $report_type = $report_fromEveryone['REPORT_TYPE'];
-                    $report_poster_dep = $report_fromEveryone['REPORT_STUDENT_DEPARTMENT'];
-                    $report_poster_name = $report_fromEveryone['REPORT_STUDENT_NAME'];
-                    $report_impression = $report_fromEveryone['REPORT_IMPRESSION'];
+                while($belongDerpartmentReportsRow = $belongDepartmentReports->fetch(PDO::FETCH_ASSOC)):
+                    for($counter = 1;counter <= 5; counter += 1):
+                        $date2               = new Datetime($belongDerpartmentReportsRow['reportDate']);
+                        $reportDate          = date_format($date2,'Y年m月d日');
+                        $reportCompany = $belongDerpartmentReportsRow['REPORT_COMPANY_NAME'];
+                        $reportType         = $belongDerpartmentReportsRow['REPORT_TYPE'];
+                        $reportDepartment   = $belongDerpartmentReportsRow['REPORT_STUDENT_DEPARTMENT'];
+                        $reportPoster  = $belongDerpartmentReportsRow['REPORT_STUDENT_NAME'];
+                        $reportImpression   = $belongDerpartmentReportsRow['REPORT_IMPRESSION'];
                 ?>
 
                 <div class = "newreports">
                     <ul class="a1">
-                            <!--企業--><li class="w1"><a class="companyname" id = "<?php echo $report_company_name?>"><?php echo $report_company_name ?></a></li>
-                            <!--種類--><li class="w2"><p class="reptype"><?php echo $report_type ?></p></li>  
+                            <!--企業--><li class="w1"><a class="companyname" id = "<?php echo $reportCompany?>"><?php echo $reportCompany ?></a></li>
+                            <!--種類--><li class="w2"><p class="reptype"><?php echo $reportType ?></p></li>  
                         </ul>
                         <ul class="a2">
                             <!--text--><li class="w2" id="str">投稿者:</li>
-                            <!--学科--><li class="w2"><p class="department"><?php echo $report_poster_dep ?></p></li> 
-                            <!--氏名--><li class="w2"><p class="studentname"><?php echo $report_poster_name ?></p></li>
+                            <!--学科--><li class="w2"><p class="department"><?php echo $reportDepartment ?></p></li> 
+                            <!--氏名--><li class="w2"><p class="studentname"><?php echo $reportPoster ?></p></li>
 
                             <div class ="reportdate">
-                            <!--日付--><li class="w2"><p class="reportdate"><?php echo $report_date?></p></li>
+                            <!--日付--><li class="w2"><p class="reportdate"><?php echo $reportDate?></p></li>
                             </div>
                     </ul>                 
-                <!--内容--><p class="report_impression"><?php echo $report_impression ?></p>
+                <!--内容--><p class="report_impression"><?php echo $reportImpression ?></p>
                 </div>
             <?php 
-                endfor;
+                    endfor;
+                endwhile;
             endif;
             ?>
         </main>
