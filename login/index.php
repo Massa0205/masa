@@ -2,37 +2,35 @@
 
 
 session_start();
- /*required_once("../functions/common/connectdb.php");
- $pdo=connectDb();*/
-$str = "";
-try{
-    $pdo = new PDO('mysql:host=localhost;dbname=masa', 'root', 'root');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-}
-catch(PDOException $e){
-    echo $e->getMessage();
-}
-//セッションIDがあったら
+/* すでにログイン済み */
 if (isset($_SESSION["login"])) {
     session_regenerate_id(TRUE);
     header("Location: ../");
-    exit();
 }
 
-//フォームから送信されていたら
-if(isset($_POST['user_id'])){
-    $id = $_POST['user_id'];
+required_once("../functions/common/connectdb.php");
+
+$pdo=connectDb();
+$str = "";
+
+
+/*
+    フォームから送信されている
+*/
+if(isset($_POST['user_id'])):
+    $id   = $_POST['user_id'];
     $stmt = $pdo->prepare("SELECT * FROM accounts WHERE id = ?");
     $stmt->execute(array($id));
-    $row = $stmt->fetch();
-    //一件だけ
+    $row  = $stmt->fetch();
 
-    if(!password_verify($_POST['pass'],$row['password'])){//失敗
+    /* パスワードチェック */
+    /*　　失敗 */
+    if(!password_verify($_POST['pass'],$row['password'])){
         echo 'あいうえお'.$row['password'].$_POST['pass'];
         $str = 'ログインに失敗しました';
     }
-    else{//成功
+    /* 成功 */
+    else{
         session_regenerate_id(TRUE);
         $_SESSION["login"]= $id;
         $_SESSION["auth"] = $row["authority"];
@@ -43,10 +41,8 @@ if(isset($_POST['user_id'])){
         header("Location: ../");
         exit();
     }
-}
+endif;
 ?>
-
-<!---------------HTML-------------------->
 
 <!DOCTYPE html>
 <html lang="ja">
