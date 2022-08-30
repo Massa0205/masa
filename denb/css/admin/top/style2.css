@@ -1,0 +1,113 @@
+/******************************/
+.left-bar{
+    color:rgb(121, 120, 120);
+    width:200px;
+    position:fixed;
+    height:100%;
+}
+.left-bar-list{
+    margin-top:100px;
+}
+.left-bar-list li{
+    margin-bottom:2px;
+    padding:20px;
+    padding-left:50px;
+    border-radius:0px 10px 10px 0px;
+}
+.left-bar-selected{
+    background-color:rgb(219 244 255);
+    color:rgb(0 111 189);
+}
+.left-bar-notselected:hover{
+    background-color:rgb(243, 243, 243);
+}
+#left-bar-btn-top:hover{
+    
+}
+/******************************/
+.contents{
+    position:fixed;
+    margin-left:300px;
+    margin-top:50px;
+    height:90%;
+    width:1200px;
+}
+.contents p{
+    /*display:inline-block;
+    margin-left:20px;
+    color:rgb(121, 120, 120);
+    padding:20px 40px;
+    border-radius: 10px 10px;
+    width:330px;
+    text-align:center;
+    border:solid 1px rgb(219 244 255);*/
+}
+.last-date{
+    font-size:20px;
+    color:rgb(83, 97, 116);
+}
+table {
+    margin-left:100px;
+    border-collapse:  collapse;     /* セルの線を重ねる */
+    color:rgb(100,100,100);
+}
+th,td{
+    border:solid 1px;
+    padding:8px 6px;
+    text-align: center;
+
+}
+.author-box{
+    width:70px;
+}
+.buttons{
+    margin-left:660px;
+    margin-top:60px;
+    margin-bottom:20px;
+}
+.buttons p{
+    display: inline-block;
+}
+.btn-change{
+    /*cursor:pointer;
+    border-radius:10px;
+    padding:6px 8px;
+    text-align:center;
+    background-color:rgb(219 244 255);
+    border:solid 1px rgb(0 111 189);
+    color:rgb(0 111 189);
+    width:100px;*/
+}
+.btn-change:hover{
+    /*
+    background-color:rgb(0 111 189);
+    color:rgb(219 244 255);
+    */
+}
+#btn-change-notclicked{
+    cursor:pointer;
+    border-radius:10px;
+    padding:6px 8px;
+    text-align:center;
+    background-color:rgb(219 244 255);
+    border:solid 1px rgb(0 111 189);
+    color:rgb(0 111 189);
+    width:100px;
+}
+#btn-change-notclicked:hover{
+    background-color:rgb(104, 189, 0);
+    color:rgb(219 244 255);
+}
+#btn-change-clicked{
+    cursor:pointer;
+    border-radius:10px;
+    padding:6px 8px;
+    text-align:center;
+    background-color:rgb(219 244 255);
+    border:solid 1px rgb(79, 189, 0);
+    color:rgb(79, 189, 0);
+    width:100px;
+}
+#btn-change-clicked:hover{
+    
+}

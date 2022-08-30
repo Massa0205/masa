@@ -1,0 +1,9 @@
+$("#uploadbutton").click(function(){
+    $('.upload-modal-wapper').fadeIn();
+    $('.bodyy').css({'-ms-filter':'blur(7px)','filter':'blur(7px)'});
+});
+//モーダルclose
+$("#closebtn").click(function(){
+    $('.upload-modal-wapper').fadeOut();
+    $('.bodyy').css({'-ms-filter':'blur(0px)','filter':'blur(0px)'});
+});

@@ -1,17 +1,23 @@
 <?php
-    /*
-        @return PDOstatement
-        DB接続失敗時はNULL
-
+    /**
+     * DB接続してPDOを返すメソッド
+     * 失敗時はNULLを返す
+     * @return PDO 
     */
-    function connectDb(){
-        try{
-            $pdo = new PDO('mysql:host=localhost;dbname=masa', 'root', 'root');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-        }
-        catch(Exception $e){
-            return $db = null;
+    class DataBaseConnector{
+
+        private $pdo = null;
+        private const HOST = 'localhost';
+        private const NAME = 'masa';
+        private const ID   = 'root';
+        private const PASS = 'root';
+
+        function EstablishConnection(){
+            /**
+             * コネクション確立
+             */
+            $this->pdo = new PDO('mysql:host=${HOST}; dbname=${NAME}', '${ID}', '${PASS}');
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         }
     }
 ?>

@@ -1,0 +1,309 @@
+html{
+    height:100%;
+    overflow-y: scroll;
+}
+body{
+    height:100%;
+    font-family:"avenir next";
+    background: rgb(0,96,180);
+    background: linear-gradient(117deg, rgba(0,96,180,1) 0%, rgba(0,177,255,1) 69%);
+    background-attachment: fixed;
+}
+.header-contents{
+    height:80px;
+    width:1200px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.header-logo{
+    display:inline-block;
+    padding-top:30px;
+    margin-top:5px;
+    margin-left:3%;
+
+}
+.header-logo a{/*ロゴ*/
+    color:white;
+    font-size:28px;
+}
+.header-search{
+    display:inline-block;
+    background-color:antiquewhite;
+    height:50px;
+}
+.header-search input{
+    display:inline-block;
+    outline:none;
+    border:none;
+    background-color:rgba(0,0,0,0.15);
+    color:white;
+    font-size:16px;
+    padding:10px 16px 10px 10px;
+    border-radius:5px;
+    margin-top:22px;
+    width:400px;
+    position:absolute;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.frm input::placeholder{
+    color:rgb(219, 219, 219);
+}
+.mysearch{
+    font-size:1.5em;
+    color:#ffffffda;
+}
+.btn{
+    top:-13px;
+    left:830px;
+    color:white;
+    background-color:rgba(0,0,0,0);
+    outline:none;
+    border:none;
+    display:inline-block;
+    position:absolute;
+    margin-left:160px;
+    margin-top:50px;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.header-list{
+    display:inline-block;
+    float:right;
+    padding-top:36px;
+    font-size:16px;
+}
+.header-ul li{
+    float:left;
+    margin-right:19px;
+    
+}
+.topleftbar a{
+    color:white;
+}
+.company-namelabel{
+    color:white;
+    font-size:25px;
+    width:800px;
+    font-weight: 800;
+    margin-right:auto;
+    margin-left:auto;
+    margin-bottom:35px;
+}
+.company-namelabel span{
+    color:rgb(197, 197, 197);
+    font-weight: 100;
+    font-size:22px;
+    padding-left:50px;
+}
+#alltype{
+    color:rgb(255, 255, 255);
+}
+.leftbox{
+    background-color:#175996;
+}
+
+.selectbar{
+    color:black;
+    width:100%;
+    border-bottom: solid 1px #0072ed;
+    
+}
+.type-select{
+    width:800px;
+    margin-right:auto;
+    margin-left:auto;
+    cursor:pointer;
+}
+.type-select li{
+    color:silver;
+    display:inline-block;
+    width:120px;
+    text-align: center;
+    padding-left: 2px;
+    padding-right:2px;
+    padding-top:14px;
+    padding-bottom:10px;
+    border-radius:5px;
+
+}
+.marginbar{
+    margin-left:4px;
+}
+main{
+    font-size:17px;
+    letter-spacing: 1px;
+    margin-top:50px;
+}
+.recentlyreport{
+    margin-top:20px;
+    color:#575757;
+    width:800px;
+    right:0;
+    left:0;
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+.ui-menu-item{
+    float:none;
+}
+.newreports{
+    box-shadow: 4px 4px 10px #0000005c;
+    margin-top:15px;
+    border:1px solid;
+    border-color:#00000002;
+    border-radius: 7px;
+    color:#ffffff;
+    font-size:14px;
+    left:0;
+    right:0;
+    margin-right:auto;
+    margin-left:auto;
+    width:800px;
+    background-color:rgba(0,0,0,0.15);
+}
+.w1{
+    display:inline-block;
+}
+.w2{
+    display:inline-block;
+}
+.a1{
+    margin-top:35px;
+    margin-left:30px;
+}
+.a2{
+    margin-top:15px;
+    margin-left:30px;
+
+}
+.a3{
+    display:inline-block;
+}
+.reportdate{
+    margin-right:30px;
+    float:right;
+    text-align: right;
+}
+.report_impression{
+    margin-top:30px;
+    margin-left:30px;
+    margin-right:30px;
+    line-height:18px;
+    margin-bottom:35px;
+}
+.kuuhaku{
+    margin-bottom:60px;
+}
+.companyname{
+
+    font-size:18px;
+    color:#175996;
+}
+.studentname{
+    width:160px;
+}
+.reptype{
+    margin-left:10px;
+    font-size:14px;
+}
+.department{
+    font-size:16px;
+    color:#ffffff;
+}
+.reportdate{
+    display:inline-block;
+}
+#datee{
+    text-align:right;
+}
+#str{
+    color:rgb(185,185,185);
+}
+#company-img{
+    height:200px;
+}
+#uploadbutton{
+    color:white;
+    cursor:pointer;
+}
+#alltype{
+    background-color:rgba(0,0,0,0.2);
+}
+/***********モーダル*****************/
+.upload-modal-wapper{
+    display:none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.356);
+}
+.frmmain{
+    margin-top:30px;
+}
+.frmupload{
+    border-radius: 10px;
+    background-color: rgb(39, 43, 49);
+    color:rgb(224, 224, 224);
+    width:550px;
+    height:630px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:140px;
+}
+.frmupload input,.frmupload textarea,.frmupload select{
+    border:none;
+    outline:none;
+    width:100%;
+    padding-right:0;
+    color:rgb(202, 202, 202);
+    background-color:rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding:10px 7px;
+}
+.frmupload input:focus,.frmupload textarea:focus,.frmupload select:focus{
+}
+.company-tab{
+    margin-top:20px;
+}
+.reporttype,.examdate,.impress{
+    margin-top:20px;
+}
+.impress textarea{
+    resize: none;
+    height:250px;
+}
+.frmupload li{
+    margin-top:2px;
+}
+.frmupload ul{
+    width:400px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.size{
+    margin-top:10px;
+    margin-right:17px;
+    font-size:2em;
+    float:right;
+    cursor:pointer;
+}
+#sendbtn{
+    background-color:rgb(0,96,180);
+    cursor:pointer;
+    width:410px;
+}
+#sendbtn:hover{
+    background-color:rgb(0,177,255);
+
+}
+option{
+    background-color:white;
+    color:black;
+}

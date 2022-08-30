@@ -1,0 +1,57 @@
+body{
+    background: linear-gradient(140deg, #1B6CB7, #259CDF);;
+}
+.frm{
+    background-color: white;
+    border-radius:20px;
+    border:1px solid #959595;
+    width: 551px;
+    height:452px;
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    max-width: 100vw;
+    max-height: 100vh;
+
+}
+
+.logo{
+    margin-left:184px;
+    margin-top:27px;
+    font-size:67px;
+    height:100px;
+    margin-bottom:10px;
+}
+.inputlist{
+    border:0px;
+    margin-left:35px;
+}
+input{
+    width:461px;
+    height:44px;
+    border-radius:10px;
+    padding-left:10px;
+    font-size:18px;
+}
+.inputpass{
+    margin-top:35px;
+}
+.submitbtn{
+    color:white;
+    background-color:#0377fc;
+    margin-top:35px;
+    width:477px;
+    height:50px;
+}
+.links{
+    margin-top:40px;
+}
+.forgetpass{
+    margin-left:35px;
+}
+.register{
+    margin-left:134px;
+}

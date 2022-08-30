@@ -1,0 +1,106 @@
+.header-contents{
+    height:80px;
+    width:1200px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.header-logo{
+    display:inline-block;
+    padding-top:30px;
+    margin-top:5px;
+    margin-left:3%;
+
+}
+.header-logo a:hover{
+    cursor:pointer;
+    color:#a5a5a5;
+}
+.header-logo a{/*ロゴ*/
+    color:white;
+    font-size:28px;
+}
+.header-search{
+    display:inline-block;
+    background-color:antiquewhite;
+    height:50px;
+}
+.header-search input{
+    display:inline-block;
+    outline:none;
+    border:none;
+    background-color:rgba(0,0,0,0.15);
+    color:white;
+    font-size:16px;
+    padding:10px 16px 10px 10px;
+    border-radius:5px;
+    margin-top:22px;
+    width:400px;
+    position:absolute;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.header-search ul{
+    background-color: red;
+}
+.frm input::placeholder{
+    color:rgb(219, 219, 219);
+}
+.mysearch{
+    font-size:1.5em;
+    color:#ffffffda;
+}
+.btn{
+    top:-13px;
+    left:830px;
+    color:white;
+    background-color:rgba(0,0,0,0);
+    outline:none;
+    border:none;
+    display:inline-block;
+    position:absolute;
+    margin-left:160px;
+    margin-top:50px;
+    transform: translate(-55%);
+    left:50%;
+    
+}
+.header-list{
+    display:inline-block;
+    float:right;
+    padding-top:36px;
+    font-size:16px;
+}
+.header-ul li{
+    float:left;
+    margin-right:19px;
+    
+}
+.hover-window{
+    width:1200px;
+    margin-right:auto;
+    margin-left:auto;
+}
+.logout-btn{
+    display:none;
+    float:right;
+    padding-right:10px;
+}
+.topleftbar a{
+    color:white;
+}
+.topleftbar:hover{
+    color:#a5a5a5;
+}
+.topleftbar a:hover{
+    color:#a5a5a5;
+}
+.footer{
+    margin-top:100px;
+}
+#acc:hover + .logout-btn{
+    display:block;
+}
+
+
+

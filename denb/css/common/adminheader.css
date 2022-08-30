@@ -1,0 +1,12 @@
+header{
+    height: 100px;
+    background: linear-gradient(117deg, rgba(0,96,180,1) 0%, rgba(0,177,255,1) 69%);
+
+}
+#uploadbutton{
+    color:white;
+    cursor:pointer;
+}
+#uploadbutton:hover{
+    color:#a5a5a5;
+}
